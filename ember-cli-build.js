@@ -4,7 +4,13 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+
+    // need to skip babel processing of this for performance reasons
+    // however, this is breaking previous `export default...` style imports
+    // which did not previously require babel at all
+    babel: {
+      ignore: 'no-babel-no-tests/tests/mock.js'
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
